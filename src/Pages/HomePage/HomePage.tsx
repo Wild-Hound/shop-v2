@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./HomePage.module.scss";
 import data from "../../FakeData.json";
+import { Link } from "react-router-dom";
 
 interface productType {
-  "-id": string;
+  _id: string;
   name: string;
   rating: string;
   catagory: string;
@@ -23,14 +24,16 @@ const HomePage = () => {
     const JSX = products?.map((product) => {
       return (
         <div className={styles.productCard}>
-          <div className={styles.proImg}>
-            <img src={product.image} />
-          </div>
-          <div className={styles.proMeta}>
-            <p className={styles.proName}>{product.name}</p>
-            <div className={styles.rating}>Implement Rating</div>
-            <p className={styles.proPrice}>{product.price}</p>
-          </div>
+          <Link to={`/product/${product["_id"]}`}>
+            <div className={styles.proImg}>
+              <img src={product.image} />
+            </div>
+            <div className={styles.proMeta}>
+              <p className={styles.proName}>{product.name}</p>
+              <div className={styles.rating}>Implement Rating</div>
+              <p className={styles.proPrice}>{product.price}</p>
+            </div>
+          </Link>
         </div>
       );
     });

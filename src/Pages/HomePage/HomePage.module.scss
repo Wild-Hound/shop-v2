@@ -24,6 +24,9 @@
   .productCard {
     border: 1px solid #dfe4ea;
     border-radius: 5px;
+    a {
+      text-decoration: none;
+    }
     &:hover {
       cursor: pointer;
     }

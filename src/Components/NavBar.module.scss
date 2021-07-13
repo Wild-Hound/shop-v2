@@ -1,0 +1,43 @@
+@import "../Mixins/mixins.scss";
+.mainNavWrapper {
+  padding: 1em 2em;
+  display: flex;
+  justify-content: space-between;
+  background-color: #2f3640;
+  .logo {
+    text-decoration: none;
+    color: white;
+    font-size: 2.25em;
+    font-weight: 600;
+  }
+  .pageNavigation {
+    > ul {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      gap: 1em;
+      padding: 0;
+      margin: 0;
+      > li {
+        list-style: none;
+        .links {
+          text-decoration: none;
+          font-size: 1.5em;
+          @include hoverColor(#fff, #95a5a6);
+        }
+      }
+    }
+  }
+  .controlsArea {
+    display: flex;
+    align-items: center;
+    .logInBtn {
+      padding: 0.5em 1em;
+      font-size: 1.15em;
+      @include actBtn(#a4b0be);
+      .icon {
+        margin-left: 5px;
+      }
+    }
+  }
+}

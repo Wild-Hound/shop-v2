@@ -1,0 +1,20 @@
+@mixin hoverColor($color, $hoverColor, $duration: 0.35s) {
+  color: $color;
+  cursor: pointer;
+  transition: all $duration;
+  &:hover {
+    color: $hoverColor;
+  }
+}
+
+@mixin actBtn($color, $duration: 0.35s, $hoverColor: #fff) {
+  color: $color;
+  background-color: transparent;
+  border: 1px solid $color;
+  cursor: pointer;
+  transition: all $duration;
+  &:hover {
+    color: $hoverColor;
+    background-color: $color;
+  }
+}
