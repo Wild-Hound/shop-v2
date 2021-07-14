@@ -2,22 +2,19 @@ import React, { useEffect, useState } from "react";
 import styles from "./HomePage.module.scss";
 import data from "../../FakeData.json";
 import { Link } from "react-router-dom";
+import { productType } from "../../Types/Types";
+import { useDispatch } from "react-redux";
+import { updateProducts } from "../../Redux/Actions";
 
-interface productType {
-  _id: string;
-  name: string;
-  rating: string;
-  catagory: string;
-  image: string;
-  disc: string;
-  price: string;
-}
 const HomePage = () => {
   const [products, setProducts] = useState<productType[]>();
+
+  const dispatch = useDispatch();
 
   //   retrive and set data here
   useEffect(() => {
     setProducts(data);
+    dispatch(updateProducts(data));
   }, []);
 
   const getProducts = () => {

@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./NavBar.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt, faBars } from "@fortawesome/free-solid-svg-icons";
 
 const NavBar = () => {
+  // hides navbar is desktop view
+  useEffect(() => {
+    window.addEventListener("resize", (e) => {
+      const event = e.target as Window;
+      const temp = document.getElementById(styles.submenu);
+      if (event.innerWidth > 800) {
+        temp!.style.display = "none";
+      }
+    });
+  }, []);
+
   const menuLinks = () => {
     return (
       <ul>
@@ -43,16 +54,45 @@ const NavBar = () => {
     );
   };
 
+  const responsileBtn = () => {
+    return (
+      <button>
+        <FontAwesomeIcon icon={faBars} />
+      </button>
+    );
+  };
+
+  const responsiveBtnAct = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    const temp = document.getElementById(styles.submenu);
+
+    if (temp!.style.display !== "flex") {
+      temp!.style.display = "flex";
+    } else {
+      temp!.style.display = "none";
+    }
+  };
+
   return (
-    <div className={styles.mainNavWrapper}>
-      <div>
-        <Link to="/" className={styles.logo}>
-          The Shop
-        </Link>
+    <>
+      <div className={styles.mainNavWrapper}>
+        <div>
+          <Link to="/" className={styles.logo}>
+            The Shop
+          </Link>
+        </div>
+        <div className={styles.pageNavigation}>{menuLinks()}</div>
+        <div className={styles.controlsArea}>{controlsArea()}</div>
+        <div className={styles.responsiveBtn} onClick={responsiveBtnAct}>
+          {responsileBtn()}
+        </div>
       </div>
-      <div className={styles.pageNavigation}>{menuLinks()}</div>
-      <div className={styles.controlsArea}>{controlsArea()}</div>
-    </div>
+      <div id={styles.submenu}>
+        {menuLinks()}
+        {controlsArea()}
+      </div>
+    </>
   );
 };
 
